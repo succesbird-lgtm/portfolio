@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smaranjit Ghose | Portfolio</title>
+  <meta name="description" content="Smaranjit Ghose - Developer, Researcher & Open Source Enthusiast"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/hero.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+  <link rel="stylesheet" href="css/theme.css"/>
+</head>
+<body>
+
+  <!-- Particle Background Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">
+        <span class="brand-bracket">&lt;</span>
+        <span class="brand-name">SG</span>
+        <span class="brand-bracket">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="pages/about.html" class="nav-link">About</a></li>
+          <li><a href="pages/skills.html" class="nav-link">Skills</a></li>
+          <li><a href="pages/projects.html" class="nav-link">Projects</a></li>
+          <li><a href="pages/experience.html" class="nav-link">Experience</a></li>
+          <li><a href="pages/education.html" class="nav-link">Education</a></li>
+          <li><a href="pages/publications.html" class="nav-link">Research</a></li>
+          <li><a href="pages/contact.html" class="nav-link contact-btn">Contact</a></li>
+        </ul>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-greeting animate-fade-up delay-1">Hey there, I'm</p>
+        <h1 class="hero-name animate-fade-up delay-2">
+          <span class="name-highlight">Smaranjit</span> Ghose
+        </h1>
+        <div class="hero-roles animate-fade-up delay-3">
+          <span class="role-prefix">I am a </span>
+          <span class="typed-text" id="typed-text"></span>
+          <span class="cursor-blink">|</span>
+        </div>
+        <p class="hero-desc animate-fade-up delay-4">
+          Developer · Researcher · Open Source Enthusiast<br/>
+          Building impactful projects at the intersection of AI and engineering
+        </p>
+        <div class="hero-cta animate-fade-up delay-5">
+          <a href="pages/projects.html" class="btn btn-primary">View My Work</a>
+          <a href="pages/contact.html" class="btn btn-outline">Get In Touch</a>
+        </div>
+        <div class="hero-socials animate-fade-up delay-6">
+          <a href="https://github.com/smaranjitghose" target="_blank" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/smaranjitghose" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://twitter.com/smaranjitghose" target="_blank" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://medium.com/@smaranjitghose" target="_blank" class="social-icon" aria-label="Medium"><i class="fab fa-medium-m"></i></a>
+          <a href="https://kaggle.com/smaranjitghose" target="_blank" class="social-icon" aria-label="Kaggle"><i class="fab fa-kaggle"></i></a>
+        </div>
+      </div>
+      <div class="hero-visual animate-fade-left delay-3">
+        <div class="avatar-container">
+          <div class="avatar-ring"></div>
+          <div class="avatar-ring ring-2"></div>
+          <div class="avatar-img">
+            <img src="https://avatars.githubusercontent.com/u/46641503?v=4" alt="Smaranjit Ghose" loading="lazy"/>
+          </div>
+          <div class="floating-badge badge-1"><i class="fas fa-code"></i> Developer</div>
+          <div class="floating-badge badge-2"><i class="fas fa-brain"></i> AI/ML</div>
+          <div class="floating-badge badge-3"><i class="fab fa-github"></i> Open Source</div>
+        </div>
+      </div>
+    </div>
+    <a href="pages/about.html" class="scroll-down-hint animate-bounce">
+      <span>Scroll Down</span>
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- Stats Strip -->
+  <section class="stats-strip">
+    <div class="stat-item animate-count">
+      <span class="stat-number" data-target="50">0</span><span class="stat-plus">+</span>
+      <p>Projects</p>
+    </div>
+    <div class="stat-item animate-count">
+      <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+      <p>Publications</p>
+    </div>
+    <div class="stat-item animate-count">
+      <span class="stat-number" data-target="3000">0</span><span class="stat-plus">+</span>
+      <p>GitHub Stars</p>
+    </div>
+    <div class="stat-item animate-count">
+      <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
+      <p>Contributors Led</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 Smaranjit Ghose. Made with <i class="fas fa-heart" style="color:#e74c3c"></i> &amp; lots of ☕</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/typed.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/theme.js"></script>
+</body>
+</html>
