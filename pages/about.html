@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>codepilot-dev | About</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/navbar.css"/>
+  <link rel="stylesheet" href="../css/animations.css"/>
+  <link rel="stylesheet" href="../css/theme.css"/>
+  <style>
+    .about-hero {
+      background: linear-gradient(135deg, #0a0a12, #16213e);
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .about-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .about-hero p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 1rem auto 0;
+      font-size: 1.1rem;
+    }
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+    .breadcrumb a { color: var(--primary-light); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--primary); }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-img-frame {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .about-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-primary);
+      opacity: 0.1;
+      z-index: 1;
+    }
+    .about-img-frame img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 20px;
+      display: block;
+    }
+    .about-img-frame .corner-deco {
+      position: absolute;
+      width: 60px; height: 60px;
+      border: 3px solid var(--primary);
+    }
+    .corner-tl { top: -8px; left: -8px; border-right: none; border-bottom: none; border-radius: 4px 0 0 0; }
+    .corner-br { bottom: -8px; right: -8px; border-left: none; border-top: none; border-radius: 0 0 4px 0; }
+
+    .about-info-card {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--dark-card2);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-card);
+    }
+    .about-info-card .icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--gradient-primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: #fff;
+      flex-shrink: 0;
+    }
+    .about-info-card .text strong {
+      display: block;
+      font-size: 1.4rem;
+      font-family: var(--font-mono);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .about-info-card .text span { font-size: 0.8rem; color: var(--text-secondary); }
+
+    .about-content {}
+    .about-content .label {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 0.5rem;
+    }
+    .about-content h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+    .about-content h2 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .about-content p {
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+      font-size: 0.975rem;
+    }
+
+    /* Details Grid */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .detail-item i {
+      color: var(--primary);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .detail-item .detail-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .detail-item .detail-value {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .about-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Interests */
+    .interests-section { margin-top: 5rem; }
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .interest-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .interest-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .interest-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-glow); }
+    .interest-card:hover::before { transform: scaleX(1); }
+    .interest-card .emoji { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+    .interest-card h4 { font-size: 1rem; color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem; }
+    .interest-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Timeline */
+    .timeline-section { margin-top: 5rem; }
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin-top: 2.5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gradient-primary);
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 2.5rem 2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px; top: 5px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      box-shadow: 0 0 12px rgba(108,99,255,0.6);
+    }
+    .timeline-item .tl-date {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-item h4 {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .timeline-item .tl-org {
+      font-size: 0.9rem;
+      color: var(--primary-light);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-item p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-info-card { right: 0; bottom: -15px; }
+      .details-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a class="brand" href="../index.html">
+        <span class="brand-bracket">&lt;</span><span class="brand-name">SG</span><span class="brand-bracket">/&gt;</span>
+      </a>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="./about.html" class="nav-link active">About</a></li>
+          <li><a href="./skills.html" class="nav-link">Skills</a></li>
+          <li><a href="./projects.html" class="nav-link">Projects</a></li>
+          <li><a href="./experience.html" class="nav-link">Experience</a></li>
+          <li><a href="./education.html" class="nav-link">Education</a></li>
+          <li><a href="./publications.html" class="nav-link">Research</a></li>
+          <li><a href="./contact.html" class="nav-link contact-btn">Contact</a></li>
+        </ul>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="about-hero">
+    <p class="label reveal" style="font-family:var(--font-mono);color:var(--accent);font-size:0.85rem;letter-spacing:3px;text-transform:uppercase">About Me</p>
+    <h1 class="reveal">Who Am I?</h1>
+    <p class="reveal">Passionate developer, researcher, and open source enthusiast</p>
+    <div class="breadcrumb reveal">
+      <a href="../index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.7rem"></i> About
+    </div>
+  </div>
+
+  <main class="page-main">
+    <section class="section">
+      <div class="container">
+        <div class="about-grid">
+          <!-- Left: Image -->
+          <div class="about-image-wrap reveal-left">
+            <div class="about-img-frame">
+              <div class="corner-deco corner-tl"></div>
+              <div class="corner-deco corner-br"></div>
+              <img src="https://avatars.githubusercontent.com/u/46641503?v=4" alt="Smaranjit Ghose"/>
+            </div>
+            <div class="about-info-card">
+              <div class="icon"><i class="fas fa-code"></i></div>
+              <div class="text">
+                <strong>50+</strong>
+                <span>Projects Completed</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Content -->
+          <div class="about-content reveal-right">
+            <p class="label">Get to Know Me</p>
+            <h2>Developer, Researcher & <span>Open Source</span> Enthusiast</h2>
+            <p>
+              Hi! I'm Smaranjit Ghose, a passionate developer, researcher, and open source enthusiast based in India.
+              I love building impactful projects at the intersection of Artificial Intelligence and Software Engineering.
+            </p>
+            <p>
+              I am deeply passionate about leveraging technology to solve real-world problems. My journey spans across
+              machine learning, computer vision, natural language processing, and full-stack development. I'm an avid
+              contributor to open source communities and have led projects with hundreds of contributors globally.
+            </p>
+            <p>
+              When I'm not coding, you'll find me writing technical articles, mentoring fellow developers, exploring
+              new research papers, or sipping a cup of masala chai while planning my next project.
+            </p>
+
+            <div class="details-grid">
+              <div class="detail-item">
+                <i class="fas fa-user-graduate"></i>
+                <div>
+                  <span class="detail-label">Degree</span>
+                  <span class="detail-value">B.Tech CSE</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <span class="detail-label">Location</span>
+                  <span class="detail-value">India</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <span class="detail-label">Email</span>
+                  <span class="detail-value">smaranjitghose@gmail.com</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-briefcase"></i>
+                <div>
+                  <span class="detail-label">Status</span>
+                  <span class="detail-value" style="color:var(--accent)">Open to Opportunities</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-actions">
+              <a href="./contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+              <a href="#" class="btn btn-outline" download><i class="fas fa-download"></i> Download CV</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="interests-section">
+          <div class="section-header">
+            <h2 class="section-title reveal">My Interests</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle reveal">Things that keep me curious and excited</p>
+          </div>
+          <div class="interests-grid stagger-children">
+            <div class="interest-card">
+              <span class="emoji">🤖</span>
+              <h4>Artificial Intelligence</h4>
+              <p>Exploring the frontiers of AI and building intelligent systems</p>
+            </div>
+            <div class="interest-card">
+              <span class="emoji">👁️</span>
+              <h4>Computer Vision</h4>
+              <p>Teaching machines to see and understand visual world</p>
+            </div>
+            <div class="interest-card">
+              <span class="emoji">📝</span>
+              <h4>NLP</h4>
+              <p>Making machines understand and generate human language</p>
+            </div>
+            <div class="interest-card">
+              <span class="emoji">🌐</span>
+              <h4>Open Source</h4>
+              <p>Contributing to and building open source communities</p>
+            </div>
+            <div class="interest-card">
+              <span class="emoji">✍️</span>
+              <h4>Technical Writing</h4>
+              <p>Sharing knowledge through blogs, tutorials, and documentation</p>
+            </div>
+            <div class="interest-card">
+              <span class="emoji">🎓</span>
+              <h4>Mentorship</h4>
+              <p>Guiding and inspiring the next generation of developers</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-section">
+          <div class="section-header">
+            <h2 class="section-title reveal">My Journey</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="timeline stagger-children">
+            <div class="timeline-item">
+              <p class="tl-date">2024 - Present</p>
+              <h4>Machine Learning Engineer</h4>
+              <p class="tl-org">Industry & Research</p>
+              <p>Working on cutting-edge AI/ML projects, contributing to research publications, and building production-grade ML systems.</p>
+            </div>
+            <div class="timeline-item">
+              <p class="tl-date">2022 - 2024</p>
+              <h4>Open Source Maintainer</h4>
+              <p class="tl-org">awesome-portfolio-websites</p>
+              <p>Maintained and grew the open source project to 2700+ stars and 1200+ contributors from across the globe during multiple open source programs.</p>
+            </div>
+            <div class="timeline-item">
+              <p class="tl-date">2020 - 2022</p>
+              <h4>Research Intern</h4>
+              <p class="tl-org">Multiple Institutes</p>
+              <p>Conducted research in computer vision and NLP, leading to multiple publications and presentations at international conferences.</p>
+            </div>
+            <div class="timeline-item">
+              <p class="tl-date">2018 - 2022</p>
+              <h4>B.Tech in Computer Science</h4>
+              <p class="tl-org">SRM Institute of Science and Technology</p>
+              <p>Pursued undergraduate degree in Computer Science Engineering, graduating with distinction while actively participating in research and open source activities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Smaranjit Ghose. Made with <i class="fas fa-heart" style="color:#e74c3c"></i> &amp; lots of ☕</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/particles.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/theme.js"></script>
+</body>
+</html>
