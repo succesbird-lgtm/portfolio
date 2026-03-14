@@ -1,0 +1,235 @@
+/* ===== LIGHT / DARK THEME ===== */
+
+/* Dark mode (default) is handled by :root in main.css */
+/* Light mode overrides */
+body.light-mode {
+  --primary: #5b52e8;
+  --primary-light: #7b74f0;
+  --accent: #00b89a;
+  --accent2: #e84393;
+  --dark-bg: #f4f6fb;
+  --dark-card: #ffffff;
+  --dark-card2: #eef0f8;
+  --dark-border: rgba(91, 82, 232, 0.15);
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #8888aa;
+  --gradient-hero: linear-gradient(135deg, #eef0f8 0%, #e6e9f8 50%, #dde3f8 100%);
+  --shadow-glow: 0 0 40px rgba(91, 82, 232, 0.18);
+  --shadow-card: 0 8px 32px rgba(91, 82, 232, 0.12);
+}
+
+/* Canvas particles - invert for light */
+body.light-mode #particles-canvas { opacity: 0.25; }
+
+/* Stats strip light */
+body.light-mode .stats-strip {
+  background: #eef0f8;
+}
+
+/* Footer light */
+body.light-mode .footer {
+  background: #e6e9f8;
+}
+
+/* Navbar light */
+body.light-mode .navbar.scrolled {
+  background: rgba(244, 246, 251, 0.97);
+  border-bottom-color: rgba(91, 82, 232, 0.12);
+}
+
+/* Nav mobile menu light */
+body.light-mode .nav-menu {
+  background: rgba(244, 246, 251, 0.98);
+}
+
+/* Scrollbar */
+body.light-mode ::-webkit-scrollbar-track { background: #f4f6fb; }
+body.light-mode ::-webkit-scrollbar-thumb { background: var(--primary); }
+
+/* Inputs light */
+body.light-mode .form-input,
+body.light-mode .form-textarea,
+body.light-mode .form-select {
+  background: #f4f6fb;
+  border-color: rgba(91, 82, 232, 0.2);
+  color: var(--text-primary);
+}
+
+/* Hamburger lines light */
+body.light-mode .hamburger span {
+  background: var(--text-primary);
+}
+
+/* Selection */
+body.light-mode ::selection { background: var(--primary); color: #fff; }
+
+/* Hero light overrides */
+body.light-mode .hero::before {
+  background: radial-gradient(circle, rgba(91,82,232,0.1) 0%, transparent 70%);
+}
+body.light-mode .hero::after {
+  background: radial-gradient(circle, rgba(0,184,154,0.08) 0%, transparent 70%);
+}
+
+/* Avatar ring colors in light */
+body.light-mode .avatar-ring {
+  border-color: rgba(91, 82, 232, 0.35);
+}
+body.light-mode .ring-2 {
+  border-color: rgba(0, 184, 154, 0.25);
+}
+
+/* Page hero light */
+body.light-mode .page-hero {
+  background: linear-gradient(135deg, #eef0f8, #e2e6f8);
+}
+
+/* Timeline line light */
+body.light-mode .exp-timeline::before,
+body.light-mode .timeline::before {
+  background: linear-gradient(to bottom, #5b52e8, #00b89a);
+}
+
+/* Pub card hover border */
+body.light-mode .pub-card:hover,
+body.light-mode .edu-card:hover,
+body.light-mode .exp-content:hover {
+  border-color: rgba(91, 82, 232, 0.4);
+}
+
+/* Tags in light mode */
+body.light-mode .tag {
+  background: rgba(91, 82, 232, 0.1);
+  color: var(--primary);
+  border-color: rgba(91, 82, 232, 0.25);
+}
+
+/* Skill bar in light */
+body.light-mode .skill-bar-track {
+  background: rgba(91, 82, 232, 0.1);
+}
+
+/* Social icon light */
+body.light-mode .social-icon {
+  background: #fff;
+  border-color: rgba(91, 82, 232, 0.2);
+  color: var(--text-secondary);
+}
+
+/* Edu card left border */
+body.light-mode .edu-card::before {
+  background: linear-gradient(to bottom, #5b52e8, #00b89a);
+}
+
+/* Vol card border */
+body.light-mode .vol-card {
+  border-left-color: var(--primary);
+}
+
+/* Contact item light */
+body.light-mode .contact-item {
+  background: #fff;
+}
+
+/* Form wrap light */
+body.light-mode .contact-form-wrap {
+  background: #fff;
+}
+
+/* FAQ light */
+body.light-mode .faq-question,
+body.light-mode .faq-answer {
+  background: #fff;
+}
+
+/* Research stats light */
+body.light-mode .rs-item,
+body.light-mode .stat-item,
+body.light-mode .mooc-card,
+body.light-mode .cert-card,
+body.light-mode .vol-card,
+body.light-mode .interest-card,
+body.light-mode .project-card,
+body.light-mode .pub-card,
+body.light-mode .edu-card,
+body.light-mode .exp-content,
+body.light-mode .skill-icon-card,
+body.light-mode .faq-item,
+body.light-mode .location-card {
+  background: #ffffff;
+  box-shadow: 0 2px 16px rgba(91, 82, 232, 0.07);
+}
+
+body.light-mode .featured-project {
+  background: #ffffff;
+}
+
+/* Floating badge light */
+body.light-mode .floating-badge {
+  background: #fff;
+  border-color: rgba(91, 82, 232, 0.2);
+  box-shadow: 0 4px 20px rgba(91, 82, 232, 0.12);
+}
+
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle-btn {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background: var(--dark-card2);
+  border: 1.5px solid var(--dark-border);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  flex-shrink: 0;
+  outline: none;
+}
+
+body.light-mode .theme-toggle-btn {
+  background: #e0e4f5;
+  border-color: rgba(91, 82, 232, 0.2);
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 12px rgba(108, 99, 255, 0.3);
+}
+
+.toggle-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0px);
+  box-shadow: 0 2px 8px rgba(108, 99, 255, 0.4);
+}
+
+body.light-mode .toggle-thumb {
+  transform: translateX(22px);
+}
+
+/* ===== SMOOTH TRANSITION FOR THEME SWITCH ===== */
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+*, *::before, *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Prevent transition on page load */
+body.no-transition *,
+body.no-transition *::before,
+body.no-transition *::after {
+  transition: none !important;
+}
