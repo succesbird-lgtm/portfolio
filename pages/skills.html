@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smaranjit Ghose | Skills</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/navbar.css"/>
+  <link rel="stylesheet" href="../css/animations.css"/>
+  <link rel="stylesheet" href="../css/theme.css"/>
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, #0a0a12, #16213e);
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .page-hero p { color: var(--text-secondary); max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem; }
+    .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary-light); text-decoration: none; }
+
+    /* Category Tabs */
+    .skill-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 3.5rem;
+    }
+    .skill-tab {
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      border: 1px solid var(--dark-border);
+      background: var(--dark-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .skill-tab.active, .skill-tab:hover {
+      background: var(--gradient-primary);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(108,99,255,0.35);
+    }
+
+    /* Skill Cards Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-icon-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-icon-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .skill-icon-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 12px 30px rgba(108,99,255,0.3);
+      border-color: var(--primary);
+    }
+    .skill-icon-card:hover::before { opacity: 0.07; }
+    .skill-icon-card img {
+      width: 48px; height: 48px;
+      object-fit: contain;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    }
+    .skill-icon-card span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+    .skill-icon-card:hover span { color: var(--text-primary); }
+
+    /* Proficiency Section */
+    .proficiency-section { margin-top: 5rem; }
+    .proficiency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .skill-bar-item { margin-bottom: 1.5rem; }
+    .skill-bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .skill-bar-header span:first-child {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .skill-bar-header span:last-child {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--primary-light);
+    }
+    .skill-bar-track {
+      height: 6px;
+      background: rgba(108,99,255,0.15);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--gradient-primary);
+      border-radius: 50px;
+      width: 0;
+      transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px rgba(108,99,255,0.4);
+    }
+
+    /* Cert Strip */
+    .cert-section { margin-top: 5rem; }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .cert-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: var(--transition);
+    }
+    .cert-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-glow); }
+    .cert-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      background: var(--gradient-primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: #fff; flex-shrink: 0;
+    }
+    .cert-info h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .cert-info p { font-size: 0.8rem; color: var(--text-secondary); }
+    .cert-info .cert-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-top: 0.25rem; }
+
+    @media (max-width: 768px) {
+      .proficiency-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a class="brand" href="../index.html"><span class="brand-bracket">&lt;</span><span class="brand-name">SG</span><span class="brand-bracket">/&gt;</span></a>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link active">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="experience.html" class="nav-link">Experience</a></li>
+          <li><a href="education.html" class="nav-link">Education</a></li>
+          <li><a href="publications.html" class="nav-link">Research</a></li>
+          <li><a href="contact.html" class="nav-link contact-btn">Contact</a></li>
+        </ul>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <p style="font-family:var(--font-mono);color:var(--accent);font-size:0.85rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem" class="reveal">Expertise</p>
+    <h1 class="reveal">Skills & Technologies</h1>
+    <p class="reveal">A showcase of my technical toolkit and areas of expertise</p>
+    <div class="breadcrumb reveal"><a href="../index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.7rem"></i> Skills</div>
+  </div>
+
+  <main class="page-main">
+    <section class="section">
+      <div class="container">
+
+        <!-- Tabs -->
+        <div class="skill-tabs stagger-children">
+          <button class="skill-tab active" data-cat="all">All</button>
+          <button class="skill-tab" data-cat="languages">Languages</button>
+          <button class="skill-tab" data-cat="frameworks">Frameworks</button>
+          <button class="skill-tab" data-cat="ml">AI / ML</button>
+          <button class="skill-tab" data-cat="tools">Tools & DevOps</button>
+          <button class="skill-tab" data-cat="databases">Databases</button>
+        </div>
+
+        <!-- Icons Grid -->
+        <div class="skills-grid stagger-children" id="skills-grid">
+
+          <!-- Languages -->
+          <div class="skill-icon-card" data-cat="languages">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>
+            <span>Python</span>
+          </div>
+          <div class="skill-icon-card" data-cat="languages">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"/>
+            <span>JavaScript</span>
+          </div>
+          <div class="skill-icon-card" data-cat="languages">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"/>
+            <span>TypeScript</span>
+          </div>
+          <div class="skill-icon-card" data-cat="languages">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"/>
+            <span>C++</span>
+          </div>
+          <div class="skill-icon-card" data-cat="languages">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"/>
+            <span>C</span>
+          </div>
+          <div class="skill-icon-card" data-cat="languages">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R"/>
+            <span>R</span>
+          </div>
+
+          <!-- Frameworks -->
+          <div class="skill-icon-card" data-cat="frameworks">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"/>
+            <span>React</span>
+          </div>
+          <div class="skill-icon-card" data-cat="frameworks">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"/>
+            <span>Next.js</span>
+          </div>
+          <div class="skill-icon-card" data-cat="frameworks">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask"/>
+            <span>Flask</span>
+          </div>
+          <div class="skill-icon-card" data-cat="frameworks">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"/>
+            <span>FastAPI</span>
+          </div>
+          <div class="skill-icon-card" data-cat="frameworks">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"/>
+            <span>Django</span>
+          </div>
+          <div class="skill-icon-card" data-cat="frameworks">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"/>
+            <span>Node.js</span>
+          </div>
+
+          <!-- ML / AI -->
+          <div class="skill-icon-card" data-cat="ml">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"/>
+            <span>TensorFlow</span>
+          </div>
+          <div class="skill-icon-card" data-cat="ml">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"/>
+            <span>PyTorch</span>
+          </div>
+          <div class="skill-icon-card" data-cat="ml">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV"/>
+            <span>OpenCV</span>
+          </div>
+          <div class="skill-icon-card" data-cat="ml">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn"/>
+            <span>Scikit-learn</span>
+          </div>
+          <div class="skill-icon-card" data-cat="ml">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"/>
+            <span>Pandas</span>
+          </div>
+          <div class="skill-icon-card" data-cat="ml">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"/>
+            <span>NumPy</span>
+          </div>
+
+          <!-- Tools -->
+          <div class="skill-icon-card" data-cat="tools">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"/>
+            <span>Git</span>
+          </div>
+          <div class="skill-icon-card" data-cat="tools">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/>
+            <span>Docker</span>
+          </div>
+          <div class="skill-icon-card" data-cat="tools">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes"/>
+            <span>Kubernetes</span>
+          </div>
+          <div class="skill-icon-card" data-cat="tools">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS"/>
+            <span>AWS</span>
+          </div>
+          <div class="skill-icon-card" data-cat="tools">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP"/>
+            <span>GCP</span>
+          </div>
+          <div class="skill-icon-card" data-cat="tools">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"/>
+            <span>Linux</span>
+          </div>
+
+          <!-- Databases -->
+          <div class="skill-icon-card" data-cat="databases">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"/>
+            <span>MongoDB</span>
+          </div>
+          <div class="skill-icon-card" data-cat="databases">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"/>
+            <span>PostgreSQL</span>
+          </div>
+          <div class="skill-icon-card" data-cat="databases">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"/>
+            <span>MySQL</span>
+          </div>
+          <div class="skill-icon-card" data-cat="databases">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"/>
+            <span>Redis</span>
+          </div>
+        </div>
+
+        <!-- Proficiency Bars -->
+        <div class="proficiency-section">
+          <div class="section-header">
+            <h2 class="section-title reveal">Proficiency</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="proficiency-grid stagger-children" id="proficiency-grid">
+            <div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>Python</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>Machine Learning</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>Computer Vision</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div></div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>Deep Learning</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>JavaScript/TypeScript</span><span>82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div></div>
+            </div>
+            <div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>React / Next.js</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>NLP</span><span>82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div></div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>Docker / Kubernetes</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div></div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>Cloud (AWS / GCP)</span><span>72%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div></div>
+              <div class="skill-bar-item"><div class="skill-bar-header"><span>C / C++</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="cert-section">
+          <div class="section-header">
+            <h2 class="section-title reveal">Certifications</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="cert-grid stagger-children">
+            <div class="cert-card"><div class="cert-icon"><i class="fab fa-aws"></i></div><div class="cert-info"><h4>AWS Cloud Practitioner</h4><p>Amazon Web Services</p><p class="cert-date">2023</p></div></div>
+            <div class="cert-card"><div class="cert-icon"><i class="fas fa-brain"></i></div><div class="cert-info"><h4>Deep Learning Specialization</h4><p>Coursera / deeplearning.ai</p><p class="cert-date">2022</p></div></div>
+            <div class="cert-card"><div class="cert-icon"><i class="fas fa-robot"></i></div><div class="cert-info"><h4>Machine Learning</h4><p>Stanford / Coursera</p><p class="cert-date">2021</p></div></div>
+            <div class="cert-card"><div class="cert-icon"><i class="fab fa-google"></i></div><div class="cert-info"><h4>TensorFlow Developer</h4><p>Google / Coursera</p><p class="cert-date">2021</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Smaranjit Ghose. Made with <i class="fas fa-heart" style="color:#e74c3c"></i> &amp; lots of ☕</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/particles.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/theme.js"></script>
+  <script>
+    // Tab Filter
+    const tabs = document.querySelectorAll('.skill-tab');
+    const cards = document.querySelectorAll('.skill-icon-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.cat;
+        cards.forEach(card => {
+          if (cat === 'all' || card.dataset.cat === cat) {
+            card.style.display = '';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.transition = 'opacity 0.4s, transform 0.4s';
+              card.style.opacity = '1';
+              card.style.transform = '';
+            }, 50);
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Skill Bars Animation
+    function animateBars() {
+      document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        const w = bar.dataset.width;
+        bar.style.width = w + '%';
+      });
+    }
+    const profEl = document.getElementById('proficiency-grid');
+    const obs = new IntersectionObserver(([e]) => { if(e.isIntersecting) { animateBars(); obs.disconnect(); } }, { threshold: 0.2 });
+    if (profEl) obs.observe(profEl);
+  </script>
+</body>
+</html>

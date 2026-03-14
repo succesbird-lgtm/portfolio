@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smaranjit Ghose | Contact</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/navbar.css"/>
+  <link rel="stylesheet" href="../css/animations.css"/>
+  <link rel="stylesheet" href="../css/theme.css"/>
+  <style>
+    .page-hero { background: linear-gradient(135deg, #0a0a12, #16213e); padding: 120px 0 80px; text-align: center; }
+    .page-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .page-hero p { color: var(--text-secondary); max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem; }
+    .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary-light); text-decoration: none; }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Left */
+    .contact-info h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .contact-info h2 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .contact-info p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .contact-item:hover { transform: translateX(8px); border-color: var(--primary); box-shadow: var(--shadow-glow); }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--gradient-primary);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .contact-item-text .label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px; }
+    .contact-item-text .value { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 50px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .social-btn:hover { background: var(--gradient-primary); color: #fff; border-color: transparent; transform: translateY(-3px); }
+    .social-btn i { font-size: 1rem; }
+
+    /* Form */
+    .contact-form-wrap {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .form-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .form-subtitle { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 2rem; }
+
+    .form-group { margin-bottom: 1.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      background: var(--dark-bg);
+      border: 1px solid var(--dark-border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      transition: var(--transition);
+      outline: none;
+      appearance: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(108,99,255,0.15);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-textarea { resize: vertical; min-height: 130px; }
+
+    .char-count { text-align: right; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.35rem; }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      background: var(--gradient-primary);
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(108,99,255,0.5); }
+    .form-submit:active { transform: translateY(-1px); }
+
+    /* Success Message */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    .success-msg.show { display: block; }
+    .success-icon {
+      width: 72px; height: 72px;
+      background: rgba(0,212,170,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem; color: var(--accent);
+    }
+
+    /* Map / Location Card */
+    .location-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 4rem;
+    }
+    .location-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--dark-border);
+    }
+    .location-header h3 { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); }
+    .location-header p { font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem; }
+    .location-body {
+      padding: 1.5rem 2rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .location-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .location-detail i { color: var(--primary); font-size: 1.1rem; }
+    .location-detail span { font-size: 0.9rem; color: var(--text-secondary); }
+
+    .faq-section { margin-top: 5rem; }
+    .faq-item {
+      border: 1px solid var(--dark-border);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-primary);
+      background: var(--dark-card);
+      transition: var(--transition);
+    }
+    .faq-question:hover { color: var(--primary); }
+    .faq-question i { transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      background: var(--dark-card);
+    }
+    .faq-item.open .faq-answer { max-height: 200px; padding: 0 1.5rem 1.25rem; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a class="brand" href="../index.html"><span class="brand-bracket">&lt;</span><span class="brand-name">SG</span><span class="brand-bracket">/&gt;</span></a>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="experience.html" class="nav-link">Experience</a></li>
+          <li><a href="education.html" class="nav-link">Education</a></li>
+          <li><a href="publications.html" class="nav-link">Research</a></li>
+          <li><a href="contact.html" class="nav-link active contact-btn">Contact</a></li>
+        </ul>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <p style="font-family:var(--font-mono);color:var(--accent);font-size:0.85rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem" class="reveal">Say Hello</p>
+    <h1 class="reveal">Get In Touch</h1>
+    <p class="reveal">I'm always open to discussing new projects, research collaborations, or just chatting about tech!</p>
+    <div class="breadcrumb reveal"><a href="../index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.7rem"></i> Contact</div>
+  </div>
+
+  <main class="page-main">
+    <section class="section">
+      <div class="container">
+
+        <div class="contact-grid">
+          <!-- Left: Info -->
+          <div class="contact-info reveal-left">
+            <h2>Let's <span>Connect</span> & Build Something Amazing</h2>
+            <p>Whether you have a project in mind, a research idea, want to collaborate on open source, or just want to say hi — my inbox is always open. I'll try my best to get back to you!</p>
+
+            <div class="contact-items">
+              <a href="mailto:smaranjitghose@gmail.com" class="contact-item">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-item-text">
+                  <span class="label">Email</span>
+                  <span class="value">smaranjitghose@gmail.com</span>
+                </div>
+              </a>
+              <a href="https://linkedin.com/in/smaranjitghose" target="_blank" class="contact-item">
+                <div class="contact-icon" style="background:linear-gradient(135deg,#0077b5,#00a0dc)"><i class="fab fa-linkedin-in"></i></div>
+                <div class="contact-item-text">
+                  <span class="label">LinkedIn</span>
+                  <span class="value">in/smaranjitghose</span>
+                </div>
+              </a>
+              <a href="https://github.com/smaranjitghose" target="_blank" class="contact-item">
+                <div class="contact-icon" style="background:linear-gradient(135deg,#333,#555)"><i class="fab fa-github"></i></div>
+                <div class="contact-item-text">
+                  <span class="label">GitHub</span>
+                  <span class="value">github.com/smaranjitghose</span>
+                </div>
+              </a>
+              <a href="https://twitter.com/smaranjitghose" target="_blank" class="contact-item">
+                <div class="contact-icon" style="background:linear-gradient(135deg,#1da1f2,#1a8cd8)"><i class="fab fa-twitter"></i></div>
+                <div class="contact-item-text">
+                  <span class="label">Twitter</span>
+                  <span class="value">@smaranjitghose</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="social-links">
+              <a href="https://medium.com/@smaranjitghose" target="_blank" class="social-btn"><i class="fab fa-medium-m"></i> Medium</a>
+              <a href="https://kaggle.com/smaranjitghose" target="_blank" class="social-btn"><i class="fab fa-kaggle"></i> Kaggle</a>
+              <a href="https://scholar.google.com" target="_blank" class="social-btn"><i class="fas fa-graduation-cap"></i> Scholar</a>
+            </div>
+          </div>
+
+          <!-- Right: Form -->
+          <div class="contact-form-wrap reveal-right">
+            <h3 class="form-title">Send Me a Message</h3>
+            <p class="form-subtitle">Fill out the form below and I'll get back to you as soon as possible.</p>
+
+            <form id="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">First Name *</label>
+                  <input type="text" class="form-input" placeholder="John" required/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-input" placeholder="Doe"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" class="form-input" placeholder="john@example.com" required/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Subject *</label>
+                <select class="form-select form-input" required>
+                  <option value="" disabled selected>Select a subject</option>
+                  <option>Project Collaboration</option>
+                  <option>Research Discussion</option>
+                  <option>Job Opportunity</option>
+                  <option>Open Source Contribution</option>
+                  <option>Mentorship</option>
+                  <option>Just Saying Hi 👋</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message *</label>
+                <textarea class="form-textarea" placeholder="Tell me about your project or idea..." id="message-area" maxlength="1000" required></textarea>
+                <p class="char-count"><span id="char-count">0</span>/1000</p>
+              </div>
+              <button type="submit" class="form-submit">
+                <i class="fas fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+
+            <div class="success-msg" id="success-msg">
+              <div class="success-icon"><i class="fas fa-check"></i></div>
+              <h4 style="font-size:1.3rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem">Message Sent!</h4>
+              <p style="color:var(--text-secondary);font-size:0.9rem">Thanks for reaching out. I'll get back to you within 24–48 hours.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="location-card reveal">
+          <div class="location-header">
+            <h3>📍 Based In</h3>
+            <p>Open to remote collaborations worldwide</p>
+          </div>
+          <div class="location-body">
+            <div class="location-detail"><i class="fas fa-map-marker-alt"></i><span>India</span></div>
+            <div class="location-detail"><i class="fas fa-clock"></i><span>IST (UTC+5:30)</span></div>
+            <div class="location-detail"><i class="fas fa-globe"></i><span>Available for Remote Work</span></div>
+            <div class="location-detail"><i class="fas fa-calendar-check"></i><span>Response within 48 hours</span></div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+          <div class="section-header">
+            <h2 class="section-title reveal">Frequently Asked Questions</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div style="max-width:700px;margin:0 auto">
+            <div class="faq-item reveal">
+              <div class="faq-question">Are you open to new opportunities? <i class="fas fa-chevron-down"></i></div>
+              <div class="faq-answer">Yes! I'm actively looking for full-time, part-time, and freelance opportunities in AI/ML engineering and research. I'm particularly interested in roles involving computer vision, NLP, and production ML systems.</div>
+            </div>
+            <div class="faq-item reveal">
+              <div class="faq-question">Do you take on freelance projects? <i class="fas fa-chevron-down"></i></div>
+              <div class="faq-answer">Yes, I do take on select freelance projects that align with my skills and interests. Feel free to reach out with details about your project and I'll let you know if I can help.</div>
+            </div>
+            <div class="faq-item reveal">
+              <div class="faq-question">Are you available for research collaborations? <i class="fas fa-chevron-down"></i></div>
+              <div class="faq-answer">Absolutely! I love collaborating on research projects especially in the domains of computer vision, NLP, and ML for social good. Reach out with your research idea!</div>
+            </div>
+            <div class="faq-item reveal">
+              <div class="faq-question">Can you mentor junior developers? <i class="fas fa-chevron-down"></i></div>
+              <div class="faq-answer">Yes, mentorship is something I'm very passionate about. I've mentored 50+ developers through open source programs. I'm happy to guide aspiring developers in AI/ML and open source contribution.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Smaranjit Ghose. Made with <i class="fas fa-heart" style="color:#e74c3c"></i> &amp; lots of ☕</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/particles.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/theme.js"></script>
+  <script>
+    // Char counter
+    const msgArea = document.getElementById('message-area');
+    const charCount = document.getElementById('char-count');
+    if (msgArea) msgArea.addEventListener('input', () => { charCount.textContent = msgArea.value.length; });
+
+    // Form submit
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = form.querySelector('.form-submit');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        btn.disabled = true;
+        setTimeout(() => {
+          form.style.display = 'none';
+          document.getElementById('success-msg').classList.add('show');
+        }, 1800);
+      });
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

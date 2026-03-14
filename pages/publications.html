@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smaranjit Ghose | Research & Publications</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/navbar.css"/>
+  <link rel="stylesheet" href="../css/animations.css"/>
+  <link rel="stylesheet" href="../css/theme.css"/>
+  <style>
+    .page-hero { background: linear-gradient(135deg, #0a0a12, #16213e); padding: 120px 0 80px; text-align: center; }
+    .page-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .page-hero p { color: var(--text-secondary); max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem; }
+    .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary-light); text-decoration: none; }
+
+    /* Research Stats */
+    .research-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .rs-item {
+      text-align: center;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 1.5rem 2.5rem;
+      transition: var(--transition);
+    }
+    .rs-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); }
+    .rs-number {
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .rs-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem; }
+
+    /* Publication Cards */
+    .pub-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .pub-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, rgba(108,99,255,0.08), transparent 70%);
+    }
+    .pub-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); border-color: rgba(108,99,255,0.4); }
+
+    .pub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .pub-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .pub-badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-ieee { background: rgba(0,100,255,0.15); color: #6baeff; border: 1px solid rgba(0,100,255,0.25); }
+    .badge-springer { background: rgba(255,152,0,0.15); color: #ffa726; border: 1px solid rgba(255,152,0,0.25); }
+    .badge-elsevier { background: rgba(255,82,82,0.15); color: #ff7070; border: 1px solid rgba(255,82,82,0.25); }
+    .badge-arxiv { background: rgba(255,152,0,0.15); color: #ffd54f; border: 1px solid rgba(255,152,0,0.25); }
+
+    .pub-year {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .pub-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      font-style: italic;
+    }
+    .pub-authors strong { color: var(--primary-light); font-style: normal; }
+    .pub-venue {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .pub-venue i { color: var(--accent); }
+    .pub-abstract {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .pub-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .pub-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .pub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid var(--dark-border);
+      color: var(--text-secondary);
+      background: var(--dark-card2);
+    }
+    .pub-btn:hover { color: var(--primary); border-color: var(--primary); transform: translateY(-2px); }
+    .pub-btn.primary { background: var(--gradient-primary); color: #fff; border-color: transparent; }
+    .pub-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(108,99,255,0.4); color: #fff; }
+
+    .pub-citations {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    .pub-citations i { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a class="brand" href="../index.html"><span class="brand-bracket">&lt;</span><span class="brand-name">SG</span><span class="brand-bracket">/&gt;</span></a>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="experience.html" class="nav-link">Experience</a></li>
+          <li><a href="education.html" class="nav-link">Education</a></li>
+          <li><a href="publications.html" class="nav-link active">Research</a></li>
+          <li><a href="contact.html" class="nav-link contact-btn">Contact</a></li>
+        </ul>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <p style="font-family:var(--font-mono);color:var(--accent);font-size:0.85rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem" class="reveal">Scholar</p>
+    <h1 class="reveal">Research & Publications</h1>
+    <p class="reveal">Contributing to the advancement of AI/ML through peer-reviewed research</p>
+    <div class="breadcrumb reveal"><a href="../index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.7rem"></i> Research</div>
+  </div>
+
+  <main class="page-main">
+    <section class="section">
+      <div class="container">
+
+        <!-- Stats -->
+        <div class="research-stats stagger-children">
+          <div class="rs-item"><div class="rs-number">10+</div><p class="rs-label">Publications</p></div>
+          <div class="rs-item"><div class="rs-number">80+</div><p class="rs-label">Citations</p></div>
+          <div class="rs-item"><div class="rs-number">3</div><p class="rs-label">Research Areas</p></div>
+          <div class="rs-item"><div class="rs-number">5+</div><p class="rs-label">Collaborators</p></div>
+        </div>
+
+        <!-- Publications -->
+        <div class="section-header">
+          <h2 class="section-title reveal">Publications</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="pub-card reveal">
+          <div class="pub-header">
+            <div class="pub-badges">
+              <span class="pub-badge badge-ieee">IEEE</span>
+              <span class="pub-badge" style="background:rgba(0,212,170,0.1);color:var(--accent);border:1px solid rgba(0,212,170,0.2)">Conference</span>
+            </div>
+            <span class="pub-year">2023</span>
+          </div>
+          <h3 class="pub-title">Deep Learning-Based Automated Medical Image Segmentation Using Attention U-Net Architecture</h3>
+          <p class="pub-authors"><strong>Smaranjit Ghose</strong>, Collaborator A, Collaborator B</p>
+          <p class="pub-venue"><i class="fas fa-bookmark"></i> Proceedings of IEEE International Conference on Computer Vision and Image Processing (ICCVIP 2023)</p>
+          <p class="pub-abstract">
+            We propose a novel attention-based U-Net architecture for automated segmentation of medical images, specifically targeting MRI brain scans. The model leverages multi-scale attention gates to focus on relevant regions, achieving state-of-the-art Dice scores on benchmark datasets.
+          </p>
+          <div class="pub-tags"><span class="tag">Computer Vision</span><span class="tag">Medical AI</span><span class="tag">Segmentation</span><span class="tag">U-Net</span><span class="tag">Attention</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn primary"><i class="fas fa-file-pdf"></i> Paper</a>
+            <a href="#" class="pub-btn"><i class="fab fa-github"></i> Code</a>
+            <a href="#" class="pub-btn"><i class="ai ai-doi"></i> DOI</a>
+          </div>
+          <p class="pub-citations"><i class="fas fa-quote-right"></i> 15 citations</p>
+        </div>
+
+        <div class="pub-card reveal">
+          <div class="pub-header">
+            <div class="pub-badges">
+              <span class="pub-badge badge-springer">Springer</span>
+              <span class="pub-badge" style="background:rgba(108,99,255,0.1);color:var(--primary-light);border:1px solid rgba(108,99,255,0.2)">Journal</span>
+            </div>
+            <span class="pub-year">2023</span>
+          </div>
+          <h3 class="pub-title">Multilingual Hate Speech Detection Using Transfer Learning and Cross-Lingual Transformers</h3>
+          <p class="pub-authors"><strong>Smaranjit Ghose</strong>, Collaborator C</p>
+          <p class="pub-venue"><i class="fas fa-bookmark"></i> Neural Computing and Applications, Springer</p>
+          <p class="pub-abstract">
+            This paper presents a comprehensive study on multilingual hate speech detection leveraging XLM-RoBERTa and multilingual BERT. We evaluate the models on 6 languages and demonstrate strong cross-lingual transfer, achieving competitive F1 scores.
+          </p>
+          <div class="pub-tags"><span class="tag">NLP</span><span class="tag">Hate Speech</span><span class="tag">Transformers</span><span class="tag">BERT</span><span class="tag">Multilingual</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn primary"><i class="fas fa-file-pdf"></i> Paper</a>
+            <a href="#" class="pub-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+          <p class="pub-citations"><i class="fas fa-quote-right"></i> 22 citations</p>
+        </div>
+
+        <div class="pub-card reveal">
+          <div class="pub-header">
+            <div class="pub-badges">
+              <span class="pub-badge badge-ieee">IEEE</span>
+              <span class="pub-badge" style="background:rgba(0,212,170,0.1);color:var(--accent);border:1px solid rgba(0,212,170,0.2)">Conference</span>
+            </div>
+            <span class="pub-year">2022</span>
+          </div>
+          <h3 class="pub-title">Real-Time Gesture Recognition for Sign Language Translation Using 3D Convolutional Networks</h3>
+          <p class="pub-authors"><strong>Smaranjit Ghose</strong>, Collaborator D, Collaborator E</p>
+          <p class="pub-venue"><i class="fas fa-bookmark"></i> IEEE International Conference on Multimedia and Expo (ICME 2022)</p>
+          <p class="pub-abstract">
+            We present a real-time sign language recognition system using 3D convolutional neural networks and temporal attention mechanisms. The system achieves 91.2% accuracy on the WLASL dataset and runs at 30 FPS on standard hardware.
+          </p>
+          <div class="pub-tags"><span class="tag">Computer Vision</span><span class="tag">Gesture Recognition</span><span class="tag">3D CNN</span><span class="tag">Accessibility</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn primary"><i class="fas fa-file-pdf"></i> Paper</a>
+            <a href="#" class="pub-btn"><i class="fab fa-github"></i> Demo</a>
+          </div>
+          <p class="pub-citations"><i class="fas fa-quote-right"></i> 18 citations</p>
+        </div>
+
+        <div class="pub-card reveal">
+          <div class="pub-header">
+            <div class="pub-badges">
+              <span class="pub-badge badge-arxiv">arXiv</span>
+              <span class="pub-badge" style="background:rgba(108,99,255,0.1);color:var(--primary-light);border:1px solid rgba(108,99,255,0.2)">Preprint</span>
+            </div>
+            <span class="pub-year">2024</span>
+          </div>
+          <h3 class="pub-title">Efficient Fine-tuning of Large Language Models for Domain-Specific Code Generation</h3>
+          <p class="pub-authors"><strong>Smaranjit Ghose</strong>, Collaborator F</p>
+          <p class="pub-venue"><i class="fas fa-bookmark"></i> arXiv:2401.XXXXX</p>
+          <p class="pub-abstract">
+            We investigate parameter-efficient fine-tuning (PEFT) techniques including LoRA, QLoRA, and prefix tuning for adapting large language models to domain-specific code generation tasks with significantly reduced computational resources.
+          </p>
+          <div class="pub-tags"><span class="tag">LLM</span><span class="tag">Fine-tuning</span><span class="tag">LoRA</span><span class="tag">Code Generation</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn primary"><i class="fas fa-file-pdf"></i> Paper</a>
+            <a href="#" class="pub-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+          <p class="pub-citations"><i class="fas fa-quote-right"></i> 8 citations</p>
+        </div>
+
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href="https://scholar.google.com" target="_blank" class="btn btn-outline reveal">
+            <i class="fas fa-graduation-cap"></i> View on Google Scholar
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Smaranjit Ghose. Made with <i class="fas fa-heart" style="color:#e74c3c"></i> &amp; lots of ☕</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/particles.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/theme.js"></script>
+</body>
+</html>

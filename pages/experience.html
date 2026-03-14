@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smaranjit Ghose | Experience</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/navbar.css"/>
+  <link rel="stylesheet" href="../css/animations.css"/>
+  <link rel="stylesheet" href="../css/theme.css"/>
+  <style>
+    .page-hero { background: linear-gradient(135deg, #0a0a12, #16213e); padding: 120px 0 80px; text-align: center; }
+    .page-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .page-hero p { color: var(--text-secondary); max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem; }
+    .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; }
+    .breadcrumb a { color: var(--primary-light); text-decoration: none; }
+
+    /* Experience Timeline */
+    .exp-timeline { position: relative; max-width: 900px; margin: 0 auto; }
+    .exp-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gradient-primary);
+      transform: translateX(-50%);
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .exp-item.right .exp-content { grid-column: 3; grid-row: 1; }
+    .exp-item.right .exp-dot { grid-column: 2; grid-row: 1; }
+    .exp-item.right .exp-spacer { grid-column: 1; grid-row: 1; }
+    .exp-item.left .exp-content { grid-column: 1; grid-row: 1; text-align: right; }
+    .exp-item.left .exp-dot { grid-column: 2; grid-row: 1; }
+    .exp-item.left .exp-spacer { grid-column: 3; grid-row: 1; }
+
+    .exp-dot {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 1.5rem;
+    }
+    .exp-dot-inner {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      box-shadow: 0 0 16px rgba(108,99,255,0.7);
+      position: relative;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .exp-dot-inner::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(108,99,255,0.3);
+      animation: ripple 2s ease-out infinite;
+    }
+
+    .exp-content {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: var(--transition);
+      margin: 0 1rem;
+    }
+    .exp-content:hover { box-shadow: var(--shadow-glow); border-color: rgba(108,99,255,0.4); transform: scale(1.02); }
+
+    .exp-date {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .exp-item.left .exp-date { justify-content: flex-end; }
+
+    .exp-title { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .exp-org {
+      font-size: 0.95rem;
+      color: var(--primary-light);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .exp-item.left .exp-org { justify-content: flex-end; }
+    .exp-type {
+      display: inline-block;
+      padding: 0.15rem 0.7rem;
+      border-radius: 20px;
+      background: rgba(108,99,255,0.15);
+      color: var(--primary-light);
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      margin-bottom: 0.75rem;
+    }
+    .exp-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .exp-highlights { list-style: none; }
+    .exp-highlights li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      padding: 0.3rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.6;
+    }
+    .exp-item.left .exp-highlights li { flex-direction: row-reverse; }
+    .exp-highlights li::before {
+      content: '▹';
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .exp-item.left .exp-highlights li::before { content: '◃'; }
+
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .exp-item.left .exp-tags { justify-content: flex-end; }
+
+    /* Volunteer Section */
+    .volunteer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .vol-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: var(--transition);
+      border-left: 3px solid var(--primary);
+    }
+    .vol-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); }
+    .vol-role { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .vol-org { font-size: 0.875rem; color: var(--primary-light); margin-bottom: 0.5rem; font-weight: 500; }
+    .vol-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .vol-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+
+    @media (max-width: 768px) {
+      .exp-timeline::before { left: 20px; }
+      .exp-item { grid-template-columns: 40px 1fr; }
+      .exp-item.right .exp-content, .exp-item.left .exp-content { grid-column: 2; grid-row: 1; text-align: left; }
+      .exp-item.right .exp-dot, .exp-item.left .exp-dot { grid-column: 1; grid-row: 1; }
+      .exp-item.right .exp-spacer, .exp-item.left .exp-spacer { display: none; }
+      .exp-date, .exp-item.left .exp-date { justify-content: flex-start; }
+      .exp-org, .exp-item.left .exp-org { justify-content: flex-start; }
+      .exp-item.left .exp-tags { justify-content: flex-start; }
+      .exp-item.left .exp-highlights li { flex-direction: row; }
+      .exp-item.left .exp-highlights li::before { content: '▹'; }
+      .exp-content { margin: 0 0 0 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a class="brand" href="../index.html"><span class="brand-bracket">&lt;</span><span class="brand-name">SG</span><span class="brand-bracket">/&gt;</span></a>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="experience.html" class="nav-link active">Experience</a></li>
+          <li><a href="education.html" class="nav-link">Education</a></li>
+          <li><a href="publications.html" class="nav-link">Research</a></li>
+          <li><a href="contact.html" class="nav-link contact-btn">Contact</a></li>
+        </ul>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <p style="font-family:var(--font-mono);color:var(--accent);font-size:0.85rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem" class="reveal">Career</p>
+    <h1 class="reveal">Work Experience</h1>
+    <p class="reveal">My professional journey and contributions</p>
+    <div class="breadcrumb reveal"><a href="../index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.7rem"></i> Experience</div>
+  </div>
+
+  <main class="page-main">
+    <section class="section">
+      <div class="container">
+
+        <div class="exp-timeline">
+          <!-- Item 1 -->
+          <div class="exp-item right reveal">
+            <div class="exp-spacer"></div>
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+            <div class="exp-content">
+              <p class="exp-date"><i class="fas fa-calendar-alt"></i> July 2024 – Present</p>
+              <h3 class="exp-title">Machine Learning Engineer</h3>
+              <p class="exp-org"><i class="fas fa-building"></i> Tech Organization, India</p>
+              <span class="exp-type">Full-Time</span>
+              <p class="exp-desc">Working on building and deploying production-grade ML systems with a focus on computer vision and NLP.</p>
+              <ul class="exp-highlights">
+                <li>Developed and deployed CV models achieving 94% accuracy in production</li>
+                <li>Built MLOps pipelines using MLflow, Airflow, and Kubernetes</li>
+                <li>Led team of 4 engineers on an NLP text classification project</li>
+                <li>Reduced model inference latency by 60% via quantization & TensorRT</li>
+              </ul>
+              <div class="exp-tags"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Docker</span><span class="tag">K8s</span><span class="tag">MLflow</span></div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="exp-item left reveal">
+            <div class="exp-content">
+              <p class="exp-date"><i class="fas fa-calendar-alt"></i> Jan 2023 – June 2024</p>
+              <h3 class="exp-title">AI Research Intern</h3>
+              <p class="exp-org"><i class="fas fa-flask"></i> Research Lab, India</p>
+              <span class="exp-type">Internship</span>
+              <p class="exp-desc">Conducted research in computer vision and NLP, working on medical image analysis and multilingual NLP tasks.</p>
+              <ul class="exp-highlights">
+                <li>Published 2 research papers in international conferences (IEEE, Springer)</li>
+                <li>Implemented state-of-the-art segmentation models for medical images</li>
+                <li>Contributed to open-source ML tools with 500+ GitHub stars</li>
+              </ul>
+              <div class="exp-tags"><span class="tag">Research</span><span class="tag">CV</span><span class="tag">NLP</span><span class="tag">PyTorch</span></div>
+            </div>
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+            <div class="exp-spacer"></div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="exp-item right reveal">
+            <div class="exp-spacer"></div>
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+            <div class="exp-content">
+              <p class="exp-date"><i class="fas fa-calendar-alt"></i> May 2022 – Dec 2022</p>
+              <h3 class="exp-title">Open Source Program Mentor</h3>
+              <p class="exp-org"><i class="fas fa-users"></i> GirlScript Summer of Code / Hacktoberfest</p>
+              <span class="exp-type">Volunteer / Mentor</span>
+              <p class="exp-desc">Mentored 50+ developers in open source contribution during global programs, reviewing PRs and guiding contributors.</p>
+              <ul class="exp-highlights">
+                <li>Mentored 50+ developers across GSSoC, Hacktoberfest, and DWOC</li>
+                <li>Reviewed 300+ pull requests on awesome-portfolio-websites</li>
+                <li>Conducted weekly live sessions on web development and open source best practices</li>
+              </ul>
+              <div class="exp-tags"><span class="tag">Mentorship</span><span class="tag">Open Source</span><span class="tag">Leadership</span></div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="exp-item left reveal">
+            <div class="exp-content">
+              <p class="exp-date"><i class="fas fa-calendar-alt"></i> Jun 2021 – Apr 2022</p>
+              <h3 class="exp-title">Web Developer Intern</h3>
+              <p class="exp-org"><i class="fas fa-laptop-code"></i> Startup, Remote</p>
+              <span class="exp-type">Internship</span>
+              <p class="exp-desc">Developed responsive web applications using React.js and Node.js for a startup's product suite.</p>
+              <ul class="exp-highlights">
+                <li>Built and shipped 3 web applications from 0 to production</li>
+                <li>Integrated RESTful APIs and GraphQL endpoints</li>
+                <li>Optimized web performance achieving 95+ Lighthouse scores</li>
+              </ul>
+              <div class="exp-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">GraphQL</span></div>
+            </div>
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+            <div class="exp-spacer"></div>
+          </div>
+        </div>
+
+        <!-- Volunteer -->
+        <div style="margin-top:5rem">
+          <div class="section-header">
+            <h2 class="section-title reveal">Volunteer & Community</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="volunteer-grid stagger-children">
+            <div class="vol-card">
+              <p class="vol-role">Technical Mentor</p>
+              <p class="vol-org">GirlScript Summer of Code</p>
+              <p class="vol-date">2022, 2023</p>
+              <p class="vol-desc">Mentored participants in open source development and reviewed code contributions.</p>
+            </div>
+            <div class="vol-card">
+              <p class="vol-role">Open Source Contributor</p>
+              <p class="vol-org">Hacktoberfest – DigitalOcean</p>
+              <p class="vol-date">2020, 2021, 2022</p>
+              <p class="vol-desc">Participated and organized as a maintainer, guiding contributors through the event.</p>
+            </div>
+            <div class="vol-card">
+              <p class="vol-role">Student Ambassador</p>
+              <p class="vol-org">Various Tech Communities</p>
+              <p class="vol-date">2020 – 2022</p>
+              <p class="vol-desc">Represented tech communities, organized workshops and hackathons at college level.</p>
+            </div>
+            <div class="vol-card">
+              <p class="vol-role">Technical Speaker</p>
+              <p class="vol-org">Meetups & Webinars</p>
+              <p class="vol-date">2021 – Present</p>
+              <p class="vol-desc">Delivered talks on AI/ML, open source, and developer tools at various tech meetups.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Smaranjit Ghose. Made with <i class="fas fa-heart" style="color:#e74c3c"></i> &amp; lots of ☕</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/particles.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/theme.js"></script>
+</body>
+</html>
